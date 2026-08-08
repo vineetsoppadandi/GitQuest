@@ -2,10 +2,12 @@
 
 > **Learn Git by playing.** An interactive, browser-based game that takes you from zero to Git expert through story-driven lessons, real-world incident scenarios, IDE simulations, hands-on CLI practice, and personalised examples based on your background.
 
-[![Live Demo](https://img.shields.io/badge/▶_Play_Now-Git_Energy-3fb950?style=for-the-badge)](https://vineetts.github.io/GitEnergy)
+[![Live Demo](https://img.shields.io/badge/▶_Play_Now-Git_Energy-3fb950?style=for-the-badge)](https://vineetts.github.io/GitQuest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 [![No dependencies](https://img.shields.io/badge/dependencies-zero-orange?style=for-the-badge)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge)](CONTRIBUTING.md)
+
+> **Note:** this repository is still named `GitQuest` on GitHub even though the product itself has been rebranded to **Git Energy** — a rename to `GitEnergy` is planned but hasn't happened yet, so every link below uses the current, working `GitQuest` slug.
 
 ---
 
@@ -14,7 +16,7 @@
 Git Energy is a **zero-install, browser-only** Git learning game with four structured learning paths. It balances **concepts, real-world scenarios, and hands-on CLI practice** — so learners build the muscle memory and intuition that transfers to any tool or team.
 
 ```
-Open index.html → Tell us about yourself → Pick your path → Start learning
+Open index.html → Landing page → Start Your Quest → Tell us about yourself → Pick your path → Start learning
 ```
 
 No Node.js. No npm. No build step. No sign-up. One folder, open in a browser.
@@ -37,7 +39,10 @@ No Node.js. No npm. No build step. No sign-up. One folder, open in a browser.
 
 | Feature | Description |
 |---|---|
+| 🎬 **"Into the Product" Landing Page** | A scroll-driven journey (`#screen-landing`) that pushes the camera through the actual product UI — browser → world map → lesson → terminal → mastery progression — before you ever click "Start" |
+| 🧭 **Path Recommendation Quiz** | Not sure which path fits? A 60-second quiz on the "Choose Your Path" screen recommends Explorer, Adventurer, Master, or Innovator based on your answers |
 | 🌍 **Life-Stage Personalisation** | Pick your background (school / uni / work / self-taught) — story *and* concept examples adapt to your world throughout every lesson |
+| 🌴 **Jungle Storyline** | A life-stage-aware narrative arc (`JUNGLE_STORY`) with its own zones and companion characters per persona — richer chapter framing layered on top of each lesson |
 | 🎭 **Story-Driven Narrative** | Characters guide each chapter with speech bubbles and typewriter animation |
 | 🚨 **Crisis Scenarios** | Real incidents (secret exposed, wrong merge, bad rebase) with multiple choices and consequences |
 | 🔥 **Hotfix Runbooks** | Step-by-step production runbooks — each step runs in the simulated terminal |
@@ -58,7 +63,7 @@ No Node.js. No npm. No build step. No sign-up. One folder, open in a browser.
 
 ## Four Learning Paths
 
-### 🌱 Explorer (Beginner) — 12 Lessons
+### 🌱 Explorer (Beginner) — 10 Lessons
 *"I've never used Git before"*
 
 | # | Lesson | Activity Type |
@@ -74,7 +79,7 @@ No Node.js. No npm. No build step. No sign-up. One folder, open in a browser.
 | 9 | Git in VS Code | **IDE Simulation** |
 | 10 | Beginner Challenge | Full workflow |
 
-### 🔀 Adventurer (Intermediate) — 12 Lessons
+### 🔀 Adventurer (Intermediate) — 10 Lessons
 *"I know the basics but struggle with team workflows"*
 
 | # | Lesson | Activity Type |
@@ -90,7 +95,7 @@ No Node.js. No npm. No build step. No sign-up. One folder, open in a browser.
 | 9 | VS Code Git Deep Dive | **VS Code Simulation** |
 | 10 | Intermediate Challenge | Conflict → PR → Merge |
 
-### ⚡ Master (Expert) — 10 Lessons
+### ⚡ Master (Expert) — 8 Lessons
 *"I use Git daily but want to level up to senior/lead level"*
 
 | # | Lesson | Activity Type |
@@ -178,13 +183,13 @@ Each crisis has **3–4 resolution choices**, each with a real-world outcome sto
 
 **Quickest option — just open the live link:**
 
-> 🎮 **[https://vineetts.github.io/GitEnergy](https://vineetts.github.io/GitEnergy)**
+> 🎮 **[https://vineetts.github.io/GitQuest](https://vineetts.github.io/GitQuest)**
 
 Or clone and run locally:
 
 ```bash
-git clone https://github.com/vineetts/GitEnergy.git
-cd GitEnergy
+git clone https://github.com/vineetts/GitQuest.git
+cd GitQuest
 # Open index.html in your browser
 open index.html          # macOS
 start index.html         # Windows
@@ -203,7 +208,7 @@ Send them the live link — no setup, no account needed. Each player's progress 
 2. Go to **Settings → Pages**
 3. Under **Build and deployment → Source**, select **GitHub Actions**
 4. Click **Save** — the workflow in `.github/workflows/pages.yml` handles the rest
-5. Your game is live at `https://<your-username>.github.io/GitEnergy`
+5. Your game is live at `https://<your-username>.github.io/<your-fork-name>`
 
 ### Serve locally (optional, for development)
 
@@ -222,19 +227,26 @@ npx serve .
 ## Project Structure
 
 ```
-GitEnergy/
-├── index.html              # App shell — all screens and modals
+GitQuest/
+├── index.html              # App shell — landing page + all game screens and modals
 ├── css/
-│   └── style.css           # Full design system (dark theme, ~2600 lines)
+│   └── style.css           # Full design system (dark theme + glass/gradient, ~3,800 lines)
+├── fonts/                  # Self-hosted woff2 (Inter + JetBrains Mono, latin subset)
 ├── js/
 │   ├── data.js             # Core lesson content — 28 lessons across 3 paths
 │   ├── data-innovator.js   # Innovator path — 11 AI & strategy lessons
 │   ├── data-practical.js   # Crisis & hotfix scenarios (patches existing lessons)
-│   ├── data-lifestage.js   # Life-stage story overrides (72 personalised variants)
+│   ├── data-lifestage.js   # Life-stage story overrides (personalised variants)
 │   ├── data-commands.js    # CLI practice steps, concept examples & extra quiz questions
+│   ├── data-story.js       # Jungle Storyline — life-stage-aware narrative chapters
 │   ├── visualizer.js       # SVG git graph renderer v2 — glow, tooltips, animations
 │   ├── terminal.js         # Simulated git + shell terminal (30+ commands, && chaining)
-│   └── app.js              # Game engine — routing, state, step renderers, XP logic
+│   ├── app.js              # Game engine — routing, state, step renderers, XP logic
+│   ├── journey.js          # Landing page's scroll-driven "Into the Product" journey
+│   ├── reveal.js           # Reveal-on-scroll for the landing page's below-the-fold sections
+│   └── tilt.js             # Pointer-reactive tilt on the landing page's path cards
+├── og-image.png            # Social share preview image
+├── robots.txt / sitemap.xml
 ├── .github/
 │   ├── workflows/
 │   │   └── pages.yml       # Auto-deploy to GitHub Pages on push to main
@@ -393,7 +405,7 @@ window.LIFESTAGE_EXAMPLES.school['beginner_b11_1'] =
 - [ ] **GitLab & Bitbucket** variants of IDE simulations
 - [ ] **GitHub Actions lesson** — CI/CD basics
 
-See [open issues](https://github.com/vineetts/GitEnergy/issues) to contribute.
+See [open issues](https://github.com/vineetts/GitQuest/issues) to contribute.
 
 ---
 
